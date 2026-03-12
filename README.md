@@ -42,4 +42,4 @@ Email: weiweichiang0813@gmail.com
 Portfolio: Visit Website
 
 ## 📄 Resume & LinkedIn Integration
-To maintain a professional connection, this repository and the live site both integrate direct links to my LinkedIn profile. For recruiters, a Resume PDF link is available within the contact section to ensure access to my most up-to-date professional history.
+To maintain a professional connection, this repository and the live site both integrate direct links to my LinkedIn profile.
