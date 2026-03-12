@@ -29,26 +29,16 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        ::selection { background: var(--accent); color: white; }
-
-        /* --- Background Decoration --- */
+        body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        
+        /* --- Background & Cursor --- */
         .bg-gradient { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; animation: blobFloat 20s ease-in-out infinite; }
         .blob-1 { width: 600px; height: 600px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(6, 182, 212, 0.2)); top: -200px; right: -100px; }
-        .blob-2 { width: 500px; height: 500px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(14, 165, 233, 0.15)); bottom: -150px; left: -100px; animation-delay: -7s; }
-        .blob-3 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.1)); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -14s; }
-        @keyframes blobFloat { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -30px) scale(1.05); } 66% { transform: translate(-20px, 20px) scale(0.95); } }
-
-        /* --- Cursor --- */
+        .blob-2 { width: 500px; height: 500px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(14, 165, 233, 0.15)); bottom: -150px; left: -100px; }
         .cursor { width: 20px; height: 20px; border: 1.5px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; }
         .cursor-dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; }
+        @keyframes blobFloat { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.05); } }
 
         /* --- Navigation --- */
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(248, 250, 252, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light); }
@@ -56,143 +46,98 @@
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); text-decoration: none; position: relative; padding: 0.5rem 0; transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--accent); }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent-gradient); transition: width 0.3s ease; border-radius: 1px; }
-        .nav-links a:hover::after { width: 100%; }
 
         /* --- Buttons --- */
-        .btn { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 1rem 2rem; border-radius: 12px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; font-weight: 500; border: none; }
-        .btn svg { width: 14px; height: 14px; }
+        .btn { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 1rem 2rem; border-radius: 12px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: 0.3s ease; font-weight: 500; border: none; }
         .btn-primary { background: var(--accent-gradient); color: white; box-shadow: 0 4px 15px var(--shadow-lg); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px var(--shadow-lg); }
         .btn-secondary { background: var(--bg-elevated); color: var(--text); border: 1px solid var(--border); }
-        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+        .btn-secondary:hover { border-color: var(--accent); background: var(--accent-dim); }
 
         /* --- Hero Section --- */
-        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; gap: 2rem; }
+        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1.2fr; overflow: hidden; gap: 2rem; }
         .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 8rem 2rem 4rem 6rem; }
-        .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--text-subtle); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; opacity: 0; animation: fadeIn 0.8s ease 0.2s forwards; }
+        .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
         .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--border); }
-        .hero-tag em { font-style: normal; color: var(--accent); font-weight: 600; }
-        .hero-title { font-family: 'Instrument Serif', serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.5rem; color: var(--text); }
-        .hero-title span { display: block; }
+        .hero-title { font-family: 'Instrument Serif', serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 400; line-height: 1.1; margin-bottom: 1.5rem; }
         .hero-title em { font-style: italic; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-description { font-size: 1.15rem; color: var(--text-muted); max-width: 480px; margin-bottom: 2.5rem; opacity: 0; animation: fadeIn 0.8s ease 0.5s forwards; line-height: 1.8; }
-        .hero-cta { display: flex; gap: 1rem; opacity: 0; animation: fadeIn 0.8s ease 0.6s forwards; }
-        
-        .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding-right: 6rem; }
-        .scraper-showcase { width: 100%; max-width: 500px; background: #1E293B; border-radius: 20px; border: 1px solid #334155; padding: 1.5rem; box-shadow: 0 25px 60px rgba(0,0,0,0.2); font-family: 'JetBrains Mono', monospace; animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .window-controls { display: flex; gap: 6px; margin-bottom: 1rem; }
-        .control { width: 12px; height: 12px; border-radius: 50%; }
-        .red { background: #EF4444; } .yellow { background: #F59E0B; } .green { background: #10B981; }
-        .scraper-content { color: #E2E8F0; font-size: 0.8rem; }
-        .log-header { color: #94A3B8; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.75rem; display: flex; justify-content: space-between; }
+        .hero-description { font-size: 1.15rem; color: var(--text-muted); max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8; }
+        .hero-cta { display: flex; gap: 1rem; }
+
+        /* --- Floating Skill Tags (Hero Background) --- */
+        .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding-right: 4rem; }
+        .floating-skill { position: absolute; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; padding: 0.5rem 1rem; background: white; border: 1px solid var(--border); border-radius: 100px; color: var(--text-subtle); box-shadow: 0 4px 12px var(--shadow); animation: floatSkill 8s ease-in-out infinite; z-index: 1; }
+        @keyframes floatSkill { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .s1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .s2 { top: 15%; right: 20%; animation-delay: -2s; }
+        .s3 { bottom: 25%; left: 15%; animation-delay: -4s; }
+        .s4 { bottom: 15%; right: 10%; animation-delay: -6s; }
+
+        /* --- Scraper Showcase Window --- */
+        .scraper-showcase { width: 100%; max-width: 480px; background: #1E293B; border-radius: 20px; border: 1px solid #334155; padding: 1.5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.3); font-family: 'JetBrains Mono', monospace; z-index: 2; position: relative; }
+        .scraper-content { color: #E2E8F0; font-size: 0.75rem; }
+        .log-header { color: #94A3B8; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center; }
         .status-active { color: #10B981; display: flex; align-items: center; gap: 6px; }
-        .status-active::before { content: ''; width: 8px; height: 8px; background: #10B981; border-radius: 50%; animation: pulse 2s infinite; }
-        .log-body { height: 180px; overflow-y: hidden; position: relative; }
-        .log-line { margin-bottom: 0.4rem; opacity: 0; animation: logEntry 0.5s ease forwards; }
-        @keyframes logEntry { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(10px); } }
-        .progress-container { margin-top: 1rem; background: #334155; border-radius: 4px; height: 6px; position: relative; overflow: hidden; }
-        .progress-bar { position: absolute; inset: 0; background: var(--pin-red); width: 0; animation: progressAnim 10s linear infinite; }
-        @keyframes progressAnim { 0% { width: 0; } 100% { width: 100%; } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+        .status-active::before { content: ''; width: 8px; height: 8px; background: #10B981; border-radius: 50%; box-shadow: 0 0 10px #10B981; }
+        .log-body { height: 160px; overflow-y: hidden; }
+        .log-line { margin-bottom: 0.5rem; }
+        .progress-container { margin-top: 1.5rem; background: #334155; border-radius: 100px; height: 4px; overflow: hidden; }
+        .progress-bar { background: var(--pin-red); width: 0; height: 100%; animation: progressAnim 12s linear infinite; }
+        @keyframes progressAnim { 0% { width: 0; } 80% { width: 85%; } 100% { width: 100%; } }
 
-        /* --- Section Common --- */
-        section { padding: 7rem 6rem; position: relative; }
-        .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 1rem; }
-        .section-label::before { content: ''; width: 24px; height: 2px; background: var(--accent-gradient); border-radius: 1px; }
-        .section-title { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 3.5rem; max-width: 600px; color: var(--text); }
-        .section-title em { font-style: italic; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-        /* --- About Section --- */
+        /* --- About Me Section --- */
         #about { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; background: var(--bg-elevated); border-radius: 40px; margin: 0 3rem; padding: 5rem; box-shadow: 0 10px 40px var(--shadow); border: 1px solid var(--border-light); }
         .about-left { position: sticky; top: 8rem; height: fit-content; }
-        .about-content p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.75rem; line-height: 1.85; }
         .linkedin-bio { font-size: 1.15rem !important; color: var(--text) !important; font-weight: 500; margin-bottom: 2rem !important; border-left: 3px solid var(--accent-dim); padding-left: 1.5rem; }
-        .about-highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border-light); justify-items: center; }
-        .highlight { width: 100%; max-width: 240px; text-align: center; padding: 2rem 1.5rem; background: var(--bg-subtle); border-radius: 20px; border: 1px solid var(--border-light); }
-        .highlight-value { font-family: 'Instrument Serif', serif; font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
-        .highlight-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-subtle); margin-top: 0.75rem; }
+        .about-highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border-light); }
+        .highlight { text-align: center; padding: 2rem 1.5rem; background: var(--bg-subtle); border-radius: 20px; border: 1px solid var(--border-light); }
+        .highlight-value { font-family: 'Instrument Serif', serif; font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
         /* --- Experience Section --- */
         .timeline { display: flex; flex-direction: column; }
-        .timeline-item { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; padding: 3rem 0; border-bottom: 1px solid var(--border-light); transition: all 0.3s ease; border-radius: 20px; }
+        .timeline-item { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; padding: 3rem 0; border-bottom: 1px solid var(--border-light); transition: 0.3s ease; border-radius: 20px; }
         .timeline-item:hover { background: var(--bg-elevated); margin: 0 -2rem; padding: 3rem 2rem; }
-        .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--text-subtle); padding-top: 0.4rem; }
-        .timeline-content h3 { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text); }
+        .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-subtle); }
         .timeline-company { font-size: 1rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 600; }
-        .timeline-description { color: var(--text-muted); font-size: 1rem; list-style: none; }
+        .timeline-description { list-style: none; color: var(--text-muted); }
         .timeline-description li { margin-bottom: 0.8rem; padding-left: 1.75rem; position: relative; line-height: 1.8; }
         .timeline-description li::before { content: ''; position: absolute; left: 0; top: 0.65rem; width: 7px; height: 7px; background: var(--accent-gradient); border-radius: 50%; }
 
-        /* --- Skills Section --- */
-        #skills { background: var(--bg-elevated); border-radius: 40px; margin: 3rem; padding: 6rem 5rem; box-shadow: 0 10px 40px var(--shadow); border: 1px solid var(--border-light); overflow: hidden; }
-        .skills-marquee-container { width: 100%; overflow: hidden; position: relative; margin-bottom: 4rem; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
+        /* --- Skills Section (Marquee) --- */
+        #skills { background: var(--bg-elevated); border-radius: 40px; margin: 3rem; padding: 6rem 5rem; border: 1px solid var(--border-light); overflow: hidden; }
+        .skills-marquee-container { width: 100%; overflow: hidden; margin-bottom: 4rem; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
         .skills-marquee { display: flex; gap: 1.5rem; animation: marquee 40s linear infinite; width: max-content; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .skill-pill { padding: 0.8rem 1.8rem; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 100px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; transition: 0.3s; }
-        .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); transform: translateY(-2px); }
-        .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .skill-category { background: var(--bg-subtle); border: 1px solid var(--border-light); border-radius: 24px; padding: 2rem; transition: 0.3s; }
-        .skill-category h4 { font-family: 'Instrument Serif', serif; font-size: 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-        .skill-category h4::before { content: ''; width: 8px; height: 8px; background: var(--accent-gradient); border-radius: 3px; }
-        .skill-list { display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.95rem; color: var(--text-muted); }
-        .skill-list span { padding-left: 1rem; position: relative; }
-        .skill-list span::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+        .skill-pill { padding: 0.8rem 1.8rem; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 100px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; }
 
         /* --- Projects Section --- */
-        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .project-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 30px; overflow: hidden; transition: 0.4s; cursor: pointer; }
-        .project-card:hover { border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 30px 70px var(--shadow-lg); }
-        .project-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; }
-        .project-preview { height: 100%; position: relative; overflow: hidden; background: #F1F5F9; border-right: 1px solid var(--border-light); }
-        .dashboard-mockup { position: absolute; top: 1.5rem; left: 1.5rem; right: -2rem; bottom: -2rem; background: white; border-radius: 16px 0 0 0; border: 1px solid var(--border); padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; }
-        .mock-nav { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.75rem; }
-        .mock-logo { font-size: 0.8rem; font-weight: 700; color: var(--pin-red); display: flex; align-items: center; gap: 4px; }
-        .mock-logo::before { content: 'P'; background: var(--pin-red); color: white; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; }
-        .mock-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
-        .mock-stat-card { background: var(--bg-subtle); border-radius: 10px; padding: 0.75rem; border: 1px solid var(--border-light); }
-        .mock-stat-label { font-size: 0.6rem; text-transform: uppercase; color: var(--text-subtle); }
-        .mock-stat-value { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--pin-red); }
-        .mock-chart { flex-grow: 1; background: var(--bg-subtle); border-radius: 10px; position: relative; overflow: hidden; }
-        .chart-path { stroke: var(--pin-red); stroke-width: 2; fill: none; }
-        .project-content { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
-        .project-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; }
-        .project-title { font-family: 'Instrument Serif', serif; font-size: 1.8rem; margin-bottom: 1rem; color: var(--text); }
-        .project-description { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
-        .project-tech { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
-        .tech-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 0.4rem 0.8rem; background: var(--bg-subtle); border-radius: 8px; color: var(--text-muted); border: 1px solid var(--border-light); }
-        .project-status { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #10B981; margin-top: 1.5rem; font-weight: 600; }
-        .badge-dot { width: 8px; height: 8px; background: #10B981; border-radius: 50%; animation: pulse 2s infinite; }
+        .project-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1.2fr 1fr; border-radius: 30px; overflow: hidden; border: 1px solid var(--border); background: white; }
+        .project-preview { height: 100%; position: relative; background: #F1F5F9; overflow: hidden; }
+        .dashboard-mockup { position: absolute; top: 1.5rem; left: 1.5rem; right: -2rem; bottom: -2rem; background: white; border-radius: 16px 0 0 0; border: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+        .mock-logo { font-size: 0.8rem; font-weight: 700; color: var(--pin-red); }
+        .mock-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .mock-stat-card { background: var(--bg-subtle); padding: 1rem; border-radius: 12px; }
+        .mock-stat-value { font-family: 'Instrument Serif', serif; font-size: 1.8rem; color: var(--pin-red); }
+        .project-content { padding: 4rem; }
+        .project-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); margin-bottom: 1rem; text-transform: uppercase; }
+        .project-title { font-family: 'Instrument Serif', serif; font-size: 2.2rem; margin-bottom: 1rem; }
+        .project-description { color: var(--text-muted); margin-bottom: 2rem; }
+        .project-tech { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+        .tech-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 0.4rem 0.8rem; background: var(--bg-subtle); border-radius: 8px; border: 1px solid var(--border-light); }
 
         /* --- Contact Section --- */
-        #contact { text-align: center; padding: 7rem 6rem; background: var(--bg-elevated); border-radius: 40px 40px 0 0; margin: 3rem 3rem 0; border: 1px solid var(--border-light); border-bottom: none; }
-        .contact-title { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 1.5rem; }
-        .contact-title em { font-style: italic; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .contact-subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 480px; margin: 0 auto 3rem; line-height: 1.8; }
-        .contact-links { display: flex; justify-content: center; gap: 1rem; }
-        .contact-link { display: flex; align-items: center; gap: 0.6rem; padding: 1rem 1.5rem; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 14px; color: var(--text); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; transition: 0.3s; font-weight: 500; }
-        .contact-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); transform: translateY(-4px); }
-        .contact-link svg { width: 18px; height: 18px; }
-
-        /* Email Modal */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: 0.3s ease; }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-content { background: var(--bg-elevated); border-radius: 24px; padding: 3rem; max-width: 400px; width: 90%; text-align: center; position: relative; border: 1px solid var(--border); transform: scale(0.9); transition: 0.3s; }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-        .modal-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border: none; background: var(--bg-subtle); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .modal-icon { width: 70px; height: 70px; background: var(--accent-gradient); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 10px 30px var(--shadow-lg); }
-        .modal-title { font-family: 'Instrument Serif', serif; font-size: 1.75rem; color: var(--text); margin-bottom: 1rem; }
-        .modal-email { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--text-muted); background: var(--bg-subtle); padding: 0.75rem 1.25rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px solid var(--border-light); }
-        .modal-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background: var(--accent-gradient); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 500; }
+        #contact { text-align: center; padding: 8rem 6rem; background: var(--bg-elevated); border-radius: 40px 40px 0 0; margin: 3rem 3rem 0; border: 1px solid var(--border-light); border-bottom: none; }
+        .contact-title { font-family: 'Instrument Serif', serif; font-size: clamp(3rem, 8vw, 5rem); margin-bottom: 1.5rem; }
+        .contact-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 3rem; }
+        .icon-btn { width: 56px; height: 56px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--text); transition: 0.3s; cursor: pointer; }
+        .icon-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-5px); }
+        .icon-btn svg { width: 24px; height: 24px; fill: currentColor; }
 
         /* Footer */
-        footer { padding: 2.5rem 6rem; display: flex; justify-content: space-between; background: var(--bg-elevated); margin: 0 3rem 3rem; border-radius: 0 0 40px 40px; border: 1px solid var(--border-light); border-top: none; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
-        .footer-right { display: flex; gap: 2rem; }
-        .footer-right a { color: var(--text-subtle); text-decoration: none; }
+        footer { padding: 2.5rem 6rem; display: flex; justify-content: space-between; border-radius: 0 0 40px 40px; margin: 0 3rem 3rem; background: white; border: 1px solid var(--border-light); border-top: none; font-size: 0.7rem; color: var(--text-subtle); }
 
-        @keyframes fadeIn { to { opacity: 1; } }
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -200,7 +145,6 @@
     <div class="bg-gradient">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
     </div>
     <div class="cursor"></div>
     <div class="cursor-dot"></div>
@@ -227,6 +171,11 @@
             </div>
         </div>
         <div class="hero-right reveal">
+            <div class="floating-skill s1">Python</div>
+            <div class="floating-skill s2">SQL</div>
+            <div class="floating-skill s3">Power BI</div>
+            <div class="floating-skill s4">GA4</div>
+            
             <div class="scraper-showcase">
                 <div class="window-controls">
                     <div class="control red"></div>
@@ -237,7 +186,7 @@
                     <div class="log-header"><span>pin_scraper.py</span><div class="status-active">Crawling...</div></div>
                     <div class="log-body" id="scraperLog">
                         <div class="log-line">&gt; initializing playwright_engine...</div>
-                        <div class="log-line">&gt; session authenticated. [cookie_load]</div>
+                        <div class="log-line" style="color: #10B981;">&gt; session authenticated. [cookie_load]</div>
                     </div>
                     <div class="progress-container"><div class="progress-bar"></div></div>
                 </div>
@@ -251,8 +200,8 @@
             <h2 class="section-title">Creating business impact through <em>data insights</em></h2>
         </div>
         <div class="about-content reveal">
-            <p class="linkedin-bio">Currently pursuing a postgraduate program in Business Insight and Analytics at Humber Polytechnic, Canada.</p>
-            <p>I am passionate about turning complex data into strategies that improve business efficiency and customer satisfaction.</p>
+            <p class="linkedin-bio">Currently pursuing a postgraduate program in Business Insight and Analytics at Humber Polytechnic, Canada. I am skilled in Python, SQL, R, and BI tools for data analysis.</p>
+            <p>I am passionate about turning complex data into strategies that improve business efficiency and customer satisfaction. Currently, I apply these skills as a Digital Marketing & Analytics Coordinator at Terradomi Candle Co.</p>
             <div class="about-highlights">
                 <div class="highlight"><div class="highlight-value">3+</div><div class="highlight-label">Years Experience</div></div>
                 <div class="highlight"><div class="highlight-value">2</div><div class="highlight-label">Countries Worked</div></div>
@@ -265,14 +214,25 @@
         <h2 class="section-title reveal">Professional <em>journey</em></h2>
         <div class="timeline">
             <div class="timeline-item reveal">
+                <div class="timeline-date">Jun 2021 — Aug 2021</div>
+                <div class="timeline-content">
+                    <h3>Brand Marketing Executive Intern</h3>
+                    <div class="timeline-company">Diamond VDM International — Taipei</div>
+                    <ul class="timeline-description">
+                        <li>Analyzed market and media data for brand campaigns.</li>
+                        <li>Evaluated digital engagement metrics for actionable insights.</li>
+                        <li>Drafted social media content to strengthen brand identity.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
                 <div class="timeline-date">Jan 2026 — Apr 2026</div>
                 <div class="timeline-content">
                     <h3>Digital Marketing & Analytics Coordinator</h3>
                     <div class="timeline-company">Terradomi Candle Co. — Ontario, Canada</div>
                     <ul class="timeline-description">
-                        <li>Automated daily Pinterest reporting by developing a custom Python scraper (Playwright).</li>
+                        <li>Automated Pinterest reporting by developing a custom Python scraper (Playwright).</li>
                         <li>Analyzed website traffic and sales performance via GA4 to optimize ROAS.</li>
-                        <li>Executed technical SEO strategies aligned with business growth targets.</li>
                     </ul>
                 </div>
             </div>
@@ -294,49 +254,35 @@
         <div class="section-label">03 — Skills</div>
         <div class="skills-marquee-container">
             <div class="skills-marquee">
-                <span class="skill-pill">Python (Pandas/Playwright)</span><span class="skill-pill">SQL (PostgreSQL)</span><span class="skill-pill">R Programming</span><span class="skill-pill">GA4</span><span class="skill-pill">Streamlit</span><span class="skill-pill">AWS</span><span class="skill-pill">GitHub Actions</span><span class="skill-pill">Power BI</span>
-                <span class="skill-pill">Python (Pandas/Playwright)</span><span class="skill-pill">SQL (PostgreSQL)</span><span class="skill-pill">R Programming</span><span class="skill-pill">GA4</span><span class="skill-pill">Streamlit</span><span class="skill-pill">AWS</span><span class="skill-pill">GitHub Actions</span><span class="skill-pill">Power BI</span>
-            </div>
-        </div>
-        <div class="skills-grid">
-            <div class="skill-category reveal">
-                <h4>Data & Analytics</h4>
-                <div class="skill-list"><span>Python</span><span>SQL</span><span>R Programming</span></div>
-            </div>
-            <div class="skill-category reveal">
-                <h4>Visualization</h4>
-                <div class="skill-list"><span>Power BI</span><span>Streamlit</span><span>Excel</span></div>
+                <span class="skill-pill">Python (Playwright)</span><span class="skill-pill">SQL (PostgreSQL)</span><span class="skill-pill">R Programming</span><span class="skill-pill">GA4</span><span class="skill-pill">GitHub Actions</span><span class="skill-pill">Power BI</span><span class="skill-pill">Streamlit</span><span class="skill-pill">Technical SEO</span>
+                <span class="skill-pill">Python (Playwright)</span><span class="skill-pill">SQL (PostgreSQL)</span><span class="skill-pill">R Programming</span><span class="skill-pill">GA4</span><span class="skill-pill">GitHub Actions</span><span class="skill-pill">Power BI</span><span class="skill-pill">Streamlit</span><span class="skill-pill">Technical SEO</span>
             </div>
         </div>
     </section>
 
     <section id="projects">
         <div class="section-label">04 — Projects</div>
-        <h2 class="section-title reveal">Featured <em>work</em></h2>
         <div class="projects-grid">
             <div class="project-card featured reveal">
                 <div class="project-preview">
                     <div class="dashboard-mockup">
-                        <div class="mock-nav"><div class="mock-logo">PinTrend Analytics</div><div class="mock-date">SYNC: 2026-03-11</div></div>
+                        <div class="mock-nav"><div class="mock-logo">PinTrend Analytics</div><div>SYNC: 2026-03-11</div></div>
                         <div class="mock-stats">
-                            <div class="mock-stat-card"><div class="mock-stat-label">IMPRESSIONS</div><div class="mock-stat-value">474</div></div>
-                            <div class="mock-stat-card"><div class="mock-stat-label">ENGAGEMENT</div><div class="mock-stat-value">10.8%</div></div>
+                            <div class="mock-stat-card"><div class="mock-stat-value">474</div><div>IMPRESSIONS</div></div>
+                            <div class="mock-stat-card"><div class="mock-stat-value">10.8%</div><div>ENGAGEMENT</div></div>
                         </div>
-                        <div class="mock-chart">
-                            <svg viewBox="0 0 100 40" style="width:100%; height:100%;"><path d="M0,35 Q10,20 20,30 T40,25 T60,15 T80,28 T100,20" class="chart-path"></path></svg>
-                        </div>
+                        <div class="mock-chart"><svg viewBox="0 0 100 40" style="height: 100%; width: 100%;"><path d="M0,35 Q10,20 20,30 T40,25 T60,15 T80,28 T100,20" class="chart-path"></path></svg></div>
                     </div>
                 </div>
                 <div class="project-content">
-                    <div class="project-tag">Data Engineering</div>
+                    <div class="project-tag">Automation & Viz</div>
                     <h3 class="project-title">PinTrend Analytics Dashboard</h3>
-                    <p class="project-description">End-to-end ETL pipeline built with Python/Playwright to automate Pinterest data collection.</p>
+                    <p class="project-description">An end-to-end ETL pipeline built with Python and Playwright to automate Pinterest data collection and visualization.</p>
                     <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">GitHub Actions</span><span class="tech-tag">Streamlit</span></div>
-                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
-                        <a href="https://weiweichiang0813-art.github.io/pinterest-analytics/" target="_blank" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Launch Dashboard</a>
-                        <a href="https://github.com/weiweichiang0813-art/pinterest-analytics" target="_blank" class="btn btn-secondary" style="padding: 0.8rem 1.5rem;">View Source</a>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="https://weiweichiang0813-art.github.io/pinterest-analytics/" target="_blank" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.65rem;">Launch Dashboard</a>
+                        <a href="https://github.com/weiweichiang0813-art/pinterest-analytics" target="_blank" class="btn btn-secondary" style="padding: 0.8rem 1.5rem; font-size: 0.65rem;">Source Code</a>
                     </div>
-                    <div class="project-status"><span class="badge-dot"></span> Pipeline Live • Fully Functional</div>
                 </div>
             </div>
         </div>
@@ -344,45 +290,65 @@
 
     <section id="contact">
         <div class="section-label">05 — Contact</div>
-        <h1 class="contact-title reveal">Let's <em>connect</em></h1>
-        <p class="contact-subtitle reveal">Open to discussing new opportunities or analytics insights.</p>
+        <h1 class="contact-title reveal">Let's <em>connect & chat!</em></h1>
+        <p class="contact-subtitle reveal">Open to discussing new opportunities or simply connecting to chat about analytics insights.</p>
         <div class="contact-links reveal">
-            <button class="contact-link" onclick="openEmailModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>Email</button>
-            <a href="https://www.linkedin.com/in/weichiang13" target="_blank" class="contact-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>LinkedIn</a>
+            <div class="icon-btn" onclick="openEmailModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <a href="https://www.linkedin.com/in/weichiang13" target="_blank" class="icon-btn">
+                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://github.com/weiweichiang0813-art" target="_blank" class="icon-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.472-4.041-1.472-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
         </div>
     </section>
 
     <div class="modal-overlay" id="emailModal" onclick="closeEmailModal(event)">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeEmailModal(event)">&times;</button>
-            <div class="modal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path></svg></div>
             <h3 class="modal-title">Get in Touch</h3>
             <p class="modal-email">weiweichiang0813@gmail.com</p>
-            <a href="mailto:weiweichiang0813@gmail.com" class="modal-btn">Send Email</a>
+            <a href="mailto:weiweichiang0813@gmail.com" class="btn btn-primary">Send Email</a>
         </div>
     </div>
 
     <footer>
-        <div class="footer-left">© 2026 Wei Wei Chiang — Toronto, Canada</div>
+        <div>© 2026 Wei Wei Chiang — Toronto</div>
         <div class="footer-right"><a href="https://www.linkedin.com/in/weichiang13" target="_blank">LinkedIn</a></div>
     </footer>
 
     <script>
-        // Cursor
-        const cursor = document.querySelector('.cursor'); const cursorDot = document.querySelector('.cursor-dot'); document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX - 10 + 'px'; cursor.style.top = e.clientY - 10 + 'px'; cursorDot.style.left = e.clientX - 2 + 'px'; cursorDot.style.top = e.clientY - 2 + 'px'; });
+        // Cursor Logic
+        const cursor = document.querySelector('.cursor'); const cursorDot = document.querySelector('.cursor-dot');
+        document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX - 10 + 'px'; cursor.style.top = e.clientY - 10 + 'px'; cursorDot.style.left = e.clientX - 2 + 'px'; cursorDot.style.top = e.clientY - 2 + 'px'; });
 
-        // Scroll Reveal
-        const revealOnScroll = () => { document.querySelectorAll('.reveal').forEach(el => { const rect = el.getBoundingClientRect(); if (rect.top < window.innerHeight - 80) el.classList.add('active'); }); }; window.addEventListener('scroll', revealOnScroll); window.addEventListener('load', revealOnScroll);
+        // Scroll Reveal Logic
+        const revealOnScroll = () => { document.querySelectorAll('.reveal').forEach(el => { const rect = el.getBoundingClientRect(); if (rect.top < window.innerHeight - 80) el.classList.add('active'); }); };
+        window.addEventListener('scroll', revealOnScroll); window.addEventListener('load', revealOnScroll);
 
-        // Modal
+        // Modal Logic
         function openEmailModal() { document.getElementById('emailModal').classList.add('active'); }
-        function closeEmailModal(e) { if (e.target.id === 'emailModal' || e.target.className === 'modal-close') document.getElementById('emailModal').classList.remove('active'); }
+        function closeEmailModal(e) { if (e.target.id === 'emailModal') document.getElementById('emailModal').classList.remove('active'); }
 
-        // Scraper Log
+        // Dynamic Scraper Log
         const logBody = document.getElementById('scraperLog');
-        const logLines = ['&gt; initializing...', '&gt; crawling target pins...', '&gt; saving data...', '&gt; sync complete.'];
+        const logLines = [
+            '&gt; searching target pins: home_decor...',
+            '&gt; [metrics] pin_id: 882193 - impressions: 54',
+            '&gt; triggering Streamlit visualization...',
+            '&gt; starting headless browser (Playwright)...',
+            '&gt; saving data to Google Sheets API...',
+            '&gt; session authenticated. [cookie_load]',
+            '&gt; daily data refresh ready.'
+        ];
         let idx = 0;
-        setInterval(() => { logBody.innerHTML += `<div class="log-line">${logLines[idx]}</div>`; logBody.scrollTop = logBody.scrollHeight; idx = (idx + 1) % logLines.length; if(logBody.childElementCount > 8) logBody.removeChild(logBody.firstElementChild); }, 2000);
+        setInterval(() => {
+            logBody.innerHTML += `<div class="log-line">${logLines[idx]}</div>`;
+            logBody.scrollTop = logBody.scrollHeight;
+            idx = (idx + 1) % logLines.length;
+            if(logBody.childElementCount > 8) logBody.removeChild(logBody.firstElementChild);
+        }, 2200);
     </script>
 </body>
 </html>
