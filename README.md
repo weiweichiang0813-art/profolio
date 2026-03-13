@@ -1,7 +1,7 @@
 # 🔗 Wei Wei Chiang's Portfolio
 This is the repository for my personal portfolio website, showcasing my work and project.
 
-🌐 Live Demo: https://weiweichiang0813-art.github.io/profolio/
+🌐 Live Demo: https://weiweichiang0813-art.github.io/portfolio/
 
 ## 🚀 Overview
 The goal of this portfolio is to provide a clean, high-performance, and responsive interface to present my analytical projects, professional experience, and technical toolkit. It reflects my focus on Business Insights, SEO Analytics, and Data Automation.
